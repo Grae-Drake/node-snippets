@@ -1,0 +1,19 @@
+{
+  "name": "snippets",
+  "version": "1.0.0",
+  "description": "Snippets project for Thinkful",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "Node",
+    "Mongodb",
+    "Thinkful"
+  ],
+  "author": "Grae Drake",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^2.0.39"
+  }
+}
