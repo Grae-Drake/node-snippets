@@ -2,7 +2,7 @@
   "name": "snippets",
   "version": "1.0.0",
   "description": "Snippets project for Thinkful",
-  "main": "index.js",
+  "main": "snippets.js",
   "scripts": {
     "test": "mocha"
   },
