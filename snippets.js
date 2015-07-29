@@ -27,15 +27,57 @@ MongoClient.connect('mongodb://localhost/', function(err, db) {
     };
 
     var read = function(name) {
-        db.close();
+        var query = {
+            name: name
+        };
+        collection.findOne(query, function(err, snippet) {
+            if (!snippet || err) {
+                console.error("Could not read snippet", name);
+                db.close();
+                return;
+            }
+            console.log("Read snippet", snippet.name);
+            console.log(snippet.content);
+            db.close();
+        });
     };
 
     var update = function(name, content) {
-        db.close();
+        var query = {
+            name: name
+        };
+
+        var update = {
+            $set: {content: content}
+        };
+
+        collection.findAndModify(query, null, update, function(err, result) {
+            var snippet = result.value;
+            if (!snippet || err) {
+                console.error("Could not update snippet", name);
+                db.close();
+                return;
+            }
+            console.log("Updated snippet", snippet.name);
+            db.close();
+        });
     };
 
     var del = function(name, content) {
-        db.close();
+        var query = {
+            name: name
+        };
+
+        collection.findAndRemove(query, function(err, result) {
+            var snippet = result.value;
+            if (!snippet || err) {
+                console.error("Could not delete snippet", name);
+                db.close();
+                return;
+            }
+            console.log("Deleted snippet", snippet.name);
+            db.close();
+        });
     };
 
     var main = function() {
